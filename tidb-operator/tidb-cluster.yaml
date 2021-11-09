@@ -46,8 +46,10 @@ spec:
     baseImage: pingcap/tidb
     replicas: 2
     service:
+      annotations:
+        service.beta.kubernetes.io/azure-load-balancer-internal: "true"
       exposeStatus: true
-      externalTrafficPolicy: cluster
+      externalTrafficPolicy: Local
       type: LoadBalancer
     config:
       log:
