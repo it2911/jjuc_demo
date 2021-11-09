@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: access-grafana
+  namespace: tidb-cluster
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - host: grafana.example.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: basic-grafana
+                port:
+                  number: 3000
+            path: /
+            pathType: Prefix
